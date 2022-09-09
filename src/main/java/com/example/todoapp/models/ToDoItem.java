@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "todoitem")
@@ -29,7 +30,7 @@ public class ToDoItem {
 
     @Getter
     @Setter
-    private Instant modifiedDate;
+    private LocalDateTime modifiedDate;
 
     public ToDoItem() {
     }
@@ -38,7 +39,7 @@ public class ToDoItem {
         this.description = description;
         this.complete=false;
         this.createdDate=Instant.now();
-        this.modifiedDate=Instant.now();
+        this.modifiedDate=LocalDateTime.now();
     }
 
     @Override

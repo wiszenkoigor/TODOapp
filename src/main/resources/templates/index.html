@@ -1,14 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.css} " />
+
+   <title>ToDo List WebApp</title>
 </head>
 
 <body>
-    welcome
+    <div class="container">
+        <br><br>
+        <h1 class="text-center">ToDo List</h1>
+        <hr />
+        <p th:text="|Happy ${today}|">Today</p>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Complete</th>
+                    <th>Created Date</th>
+                    <th>Modified Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${ToDoItem}" th:class="${item.complete} ? success : warning">
+
+
+                    <td th:text="${item.id}">item_id</td>
+                    <td th:text="${item.description}">item_description</td>
+                    <td th:text="${item.complete}">item_complete</td>
+                    <td th:text="${item.createdDate}">item_created_date</td>
+                    <td th:text="${item.modifiedDate}">item_modified_date</td>
+                <td>
+                    <div class="btn btn-group-sm" role="group">
+                        <a class="btn btn-info" th:href="@{/edit/{id}(id=${item.id})}">Edit</a>
+                        <a class="btn btn-danger" th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+                    </div>
+                </td>
+                </tr>
+            </tbody>
+            </table>
+        <p><a class="btn btn-success" href="/create-todo">Add a Todo!</a></p>
+    </div>
+
+    <script th:src="@{/webjars/jquery/3.6.1/jquery.js}"></script>
+    <script th:src="@{/webjars/bootstrap/5.2.0/js/bootstrap.js}"></script>
+
 </body>
 </html>
