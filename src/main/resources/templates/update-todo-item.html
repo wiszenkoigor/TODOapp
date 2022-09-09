@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.css} " th:rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-md-6">
+            <form
+                    action="#" th:action="@{/todo/{id}(id=${todo.id})}"
+                    th:object="${todo}"
+                    method="post">
+                <div class="form-group">
+                    <label for="description">Descriptiion</label>
+                    <input class="form-control"
+                           type="text"
+                           th:field="*{description}"
+                           id="description"
+                           placeholder="Add a description...">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" th:checked="${complete} == true" th:field="*{complete}" id="complete" />
+                        Complete
+                    </label>
+                </div>
+
+                <button class="btn btn-default" type="submit"> Update </button>
+
+
+                <input type="hidden" th:field="*{createdDate}" />
+                <input type="hidden" th:field="*{modifiedDate}" />
+
+            </form>
+        </div>
+    </div>
+
+<script th:src="@{/webjars/jquery/3.6.1/jquery.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.2.0/js/bootstrap.js}"></script>
+
+</body>
+</html>
